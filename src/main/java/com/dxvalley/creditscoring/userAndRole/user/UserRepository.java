@@ -1,4 +1,4 @@
-package com.dxvalley.creditscoring.userManager.user;
+package com.dxvalley.creditscoring.userAndRole.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

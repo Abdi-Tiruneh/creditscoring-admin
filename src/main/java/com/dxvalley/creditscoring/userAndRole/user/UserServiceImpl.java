@@ -1,9 +1,9 @@
-package com.dxvalley.creditscoring.userManager.user;
+package com.dxvalley.creditscoring.userAndRole.user;
 
 import com.dxvalley.creditscoring.exceptions.customExceptions.ResourceAlreadyExistsException;
-import com.dxvalley.creditscoring.userManager.role.Role;
-import com.dxvalley.creditscoring.userManager.role.RoleService;
-import com.dxvalley.creditscoring.userManager.user.dto.*;
+import com.dxvalley.creditscoring.userAndRole.role.Role;
+import com.dxvalley.creditscoring.userAndRole.role.RoleService;
+import com.dxvalley.creditscoring.userAndRole.user.dto.*;
 import com.dxvalley.creditscoring.utils.ApiResponse;
 import com.dxvalley.creditscoring.utils.CurrentLoggedInUser;
 import com.dxvalley.creditscoring.utils.Status;

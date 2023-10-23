@@ -1,6 +1,6 @@
-package com.dxvalley.creditscoring.userManager.user;
+package com.dxvalley.creditscoring.userAndRole.user;
 
-import com.dxvalley.creditscoring.userManager.role.Role;
+import com.dxvalley.creditscoring.userAndRole.role.Role;
 import com.dxvalley.creditscoring.utils.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

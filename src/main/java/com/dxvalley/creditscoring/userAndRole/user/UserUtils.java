@@ -1,9 +1,9 @@
-package com.dxvalley.creditscoring.userManager.user;
+package com.dxvalley.creditscoring.userAndRole.user;
 
 import com.dxvalley.creditscoring.exceptions.customExceptions.BadRequestException;
 import com.dxvalley.creditscoring.exceptions.customExceptions.ResourceNotFoundException;
-import com.dxvalley.creditscoring.userManager.role.Role;
-import com.dxvalley.creditscoring.userManager.user.dto.UserRegistrationReq;
+import com.dxvalley.creditscoring.userAndRole.role.Role;
+import com.dxvalley.creditscoring.userAndRole.user.dto.UserRegistrationReq;
 import com.dxvalley.creditscoring.utils.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

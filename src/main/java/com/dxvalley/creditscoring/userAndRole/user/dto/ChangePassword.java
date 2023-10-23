@@ -1,4 +1,4 @@
-package com.dxvalley.creditscoring.userManager.user.dto;
+package com.dxvalley.creditscoring.userAndRole.user.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

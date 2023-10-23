@@ -1,4 +1,4 @@
-package com.dxvalley.creditscoring.userManager.role;
+package com.dxvalley.creditscoring.userAndRole.role;
 
 import java.util.List;
 

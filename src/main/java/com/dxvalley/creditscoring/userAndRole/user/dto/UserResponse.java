@@ -1,4 +1,4 @@
-package com.dxvalley.creditscoring.userManager.user.dto;
+package com.dxvalley.creditscoring.userAndRole.user.dto;
 
 import com.dxvalley.creditscoring.utils.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;

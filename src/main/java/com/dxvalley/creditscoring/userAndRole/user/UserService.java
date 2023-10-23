@@ -1,9 +1,9 @@
-package com.dxvalley.creditscoring.userManager.user;
+package com.dxvalley.creditscoring.userAndRole.user;
 
-import com.dxvalley.creditscoring.userManager.user.dto.ChangePassword;
-import com.dxvalley.creditscoring.userManager.user.dto.UserRegistrationReq;
-import com.dxvalley.creditscoring.userManager.user.dto.UserResponse;
-import com.dxvalley.creditscoring.userManager.user.dto.UserUpdateReq;
+import com.dxvalley.creditscoring.userAndRole.user.dto.ChangePassword;
+import com.dxvalley.creditscoring.userAndRole.user.dto.UserRegistrationReq;
+import com.dxvalley.creditscoring.userAndRole.user.dto.UserResponse;
+import com.dxvalley.creditscoring.userAndRole.user.dto.UserUpdateReq;
 import com.dxvalley.creditscoring.utils.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

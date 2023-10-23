@@ -1,4 +1,4 @@
-package com.dxvalley.creditscoring.userManager.role;
+package com.dxvalley.creditscoring.userAndRole.role;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

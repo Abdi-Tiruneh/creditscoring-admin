@@ -1,6 +1,6 @@
-package com.dxvalley.creditscoring.userManager.user.dto;
+package com.dxvalley.creditscoring.userAndRole.user.dto;
 
-import com.dxvalley.creditscoring.userManager.user.Users;
+import com.dxvalley.creditscoring.userAndRole.user.Users;
 
 public class UserMapper {
     public static UserResponse toUserResponse(Users user) {
