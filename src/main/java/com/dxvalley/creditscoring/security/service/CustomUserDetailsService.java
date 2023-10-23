@@ -1,7 +1,7 @@
 package com.dxvalley.creditscoring.security.service;
 
-import com.dxvalley.creditscoring.userManager.user.UserRepository;
-import com.dxvalley.creditscoring.userManager.user.Users;
+import com.dxvalley.creditscoring.userAndRole.user.UserRepository;
+import com.dxvalley.creditscoring.userAndRole.user.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

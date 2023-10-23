@@ -1,9 +1,9 @@
 package com.dxvalley.creditscoring;
 
-import com.dxvalley.creditscoring.userManager.role.Role;
-import com.dxvalley.creditscoring.userManager.role.RoleRepository;
-import com.dxvalley.creditscoring.userManager.user.UserRepository;
-import com.dxvalley.creditscoring.userManager.user.Users;
+import com.dxvalley.creditscoring.userAndRole.role.Role;
+import com.dxvalley.creditscoring.userAndRole.role.RoleRepository;
+import com.dxvalley.creditscoring.userAndRole.user.UserRepository;
+import com.dxvalley.creditscoring.userAndRole.user.Users;
 import com.dxvalley.creditscoring.utils.Status;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +12,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.List;
 
 @Configuration
 @ConditionalOnProperty(prefix = "database", name = "seed", havingValue = "true")
@@ -31,12 +29,12 @@ public class ApplicationRunner {
     CommandLineRunner initDatabase() {
         return args -> {
             try {
-                // Create and save roles
-                List<Role> roles = createRoles();
-                List<Role> savedRoles = roleRepository.saveAll(roles);
+                // Create and save role
+                Role role = createRole();
+                Role savedRole = roleRepository.save(role);
 
                 // Create and save user
-                Users johnDoe = createUser(savedRoles.get(0));
+                Users johnDoe = createUser(savedRole);
                 userRepository.save(johnDoe);
 
                 log.info("ApplicationRunner => Preloaded authority, roles, and user");
@@ -48,10 +46,8 @@ public class ApplicationRunner {
     }
 
 
-    private List<Role> createRoles() {
-        Role admin = new Role("ADMIN", "Oversees app functionality, user access, and settings.");
-        Role owner = new Role("USER", "Key decision-maker with strategic authority.");
-        return List.of(admin, owner);
+    private Role createRole() {
+        return new Role("ADMIN", "Oversees app functionality, user access, and settings.");
     }
 
     private Users createUser(Role role) {

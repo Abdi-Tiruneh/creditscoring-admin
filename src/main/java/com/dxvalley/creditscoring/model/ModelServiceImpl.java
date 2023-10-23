@@ -6,6 +6,7 @@ import com.dxvalley.creditscoring.model.dto.ModelUpdateReq;
 import com.dxvalley.creditscoring.utils.CurrentLoggedInUser;
 import com.dxvalley.creditscoring.utils.Status;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,6 +78,6 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public List<Model> getModels() {
-        return modelRepository.findAll();
+        return modelRepository.findAll(Sort.by(Sort.Order.asc("id")));
     }
 }

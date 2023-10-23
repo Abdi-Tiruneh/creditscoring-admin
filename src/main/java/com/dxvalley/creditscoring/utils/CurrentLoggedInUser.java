@@ -2,8 +2,8 @@ package com.dxvalley.creditscoring.utils;
 
 import com.dxvalley.creditscoring.exceptions.customExceptions.ResourceNotFoundException;
 import com.dxvalley.creditscoring.exceptions.customExceptions.UnauthorizedException;
-import com.dxvalley.creditscoring.userManager.user.UserRepository;
-import com.dxvalley.creditscoring.userManager.user.Users;
+import com.dxvalley.creditscoring.userAndRole.user.UserRepository;
+import com.dxvalley.creditscoring.userAndRole.user.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

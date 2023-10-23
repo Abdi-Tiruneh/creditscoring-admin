@@ -9,6 +9,7 @@ import com.dxvalley.creditscoring.utils.ApiResponse;
 import com.dxvalley.creditscoring.utils.CurrentLoggedInUser;
 import com.dxvalley.creditscoring.utils.Status;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -82,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerResponse> getCustomers() {
-        List<Customer> customers = customerRepository.findAll();
+        List<Customer> customers = customerRepository.findAll(Sort.by(Sort.Order.asc("id")));
         if (customers.isEmpty())
             throw new ResourceNotFoundException("No customers found");
 
