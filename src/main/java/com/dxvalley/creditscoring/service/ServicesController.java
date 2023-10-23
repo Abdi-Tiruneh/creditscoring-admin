@@ -32,6 +32,18 @@ public class ServicesController {
         return ResponseEntity.ok(servicesService.getServices());
     }
 
+    @GetMapping("/customer/{organizationId}")
+    public ResponseEntity<List<Services>> getCustomerServices(@PathVariable String organizationId) {
+        return ResponseEntity.ok(servicesService.getCustomerServices(organizationId));
+    }
+
+    @GetMapping("/by-ids")
+    public ResponseEntity<List<Services>> getServicesById(@RequestParam List<Long> serviceIds) {
+        List<Services> services = servicesService.getServicesById(serviceIds);
+
+        return ResponseEntity.ok(services);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Services> getService(@PathVariable Long id) {
         return ResponseEntity.ok(servicesService.getService(id));
@@ -53,9 +65,9 @@ public class ServicesController {
         return ResponseEntity.ok(servicesService.removeModelsFromService(id, updateReq));
     }
 
-    @PutMapping("/{id}/block")
-    public ResponseEntity<Services> blockService(@PathVariable Long id) {
-        return ResponseEntity.ok(servicesService.blockService(id));
+    @PutMapping("/{id}/toggleStatus")
+    public ResponseEntity<Services> toggleServicesStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(servicesService.toggleServicesStatus(id));
     }
 
     @DeleteMapping("/{id}")

@@ -15,13 +15,17 @@ public interface ServicesService {
 
     List<Services> getServices();
 
+    List<Services> getCustomerServices(String organizationId);
+
     Services getService(Long id);
 
     Services addModelsToService(Long serviceId, ServiceModelReq updateReq);
 
     Services removeModelsFromService(Long serviceId, ServiceModelReq updateReq);
 
-    Services blockService(Long id);
+    Services toggleServicesStatus(Long id);
+
+    List<Services> getServicesById(List<Long> serviceIds);
 
     ResponseEntity<ApiResponse> deleteService(Long id);
 }

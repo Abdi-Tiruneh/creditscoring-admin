@@ -2,6 +2,7 @@ package com.dxvalley.creditscoring.service;
 
 import com.dxvalley.creditscoring.customer.Customer;
 import com.dxvalley.creditscoring.customer.CustomerService;
+import com.dxvalley.creditscoring.exceptions.customExceptions.ForbiddenException;
 import com.dxvalley.creditscoring.exceptions.customExceptions.ResourceNotFoundException;
 import com.dxvalley.creditscoring.model.Model;
 import com.dxvalley.creditscoring.model.ModelService;
@@ -13,9 +14,11 @@ import com.dxvalley.creditscoring.utils.CurrentLoggedInUser;
 import com.dxvalley.creditscoring.utils.Status;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -62,7 +65,16 @@ public class ServicesServiceImpl implements ServicesService {
 
     @Override
     public List<Services> getServices() {
-        List<Services> services = servicesRepository.findAll();
+        List<Services> services = servicesRepository.findAll(Sort.by(Sort.Order.asc("id")));
+        if (services.isEmpty())
+            throw new ResourceNotFoundException("No services found");
+
+        return services;
+    }
+
+    @Override
+    public List<Services> getCustomerServices(String organizationId) {
+        List<Services> services = servicesRepository.findByCustomerOrganizationId(organizationId);
         if (services.isEmpty())
             throw new ResourceNotFoundException("No services found");
 
@@ -106,13 +118,31 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
-    public Services blockService(Long id) {
+    public Services toggleServicesStatus(Long id) {
         Services service = getService(id);
+//
+//        if (!service.getUpdatedBy().equals("Customer"))
+//            throw new ForbiddenException("Only Bank is allowed to perform this action");
 
-        service.setServiceStatus(Status.BLOCKED);
-        service.setUpdatedBy(currentLoggedInUser.getUser().getFullName());
+        if (service.getServiceStatus() == Status.ACTIVE)
+            service.setServiceStatus(Status.BLOCKED);
+        else
+            service.setServiceStatus(Status.ACTIVE);
 
+        service.setUpdatedBy("Customer");
         return servicesRepository.save(service);
+    }
+
+    @Override
+    public List<Services> getServicesById(List<Long> serviceIds) {
+        List<Services> services = servicesRepository.findAllById(serviceIds);
+
+        if (services.isEmpty())
+            throw new ResourceNotFoundException("No Services is found for the provided IDs");
+
+        return services.stream()
+                .sorted(Comparator.comparing(Services::getId))
+                .toList();
     }
 
     @Override
