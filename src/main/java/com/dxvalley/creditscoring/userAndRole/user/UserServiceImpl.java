@@ -8,6 +8,7 @@ import com.dxvalley.creditscoring.utils.ApiResponse;
 import com.dxvalley.creditscoring.utils.CurrentLoggedInUser;
 import com.dxvalley.creditscoring.utils.Status;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
         if (userUtils.isPhoneNumberTaken(userReq.getPhoneNumber()))
             throw new ResourceAlreadyExistsException("Phone number is already taken");
 
-        Role role = roleService.getRoleByName(userReq.getRoleName().toUpperCase());
+        Role role = roleService.getRoleByName("ADMIN");
         Users loggedInUser = currentLoggedInUser.getUser();
         Users user = userUtils.createUser(userReq, loggedInUser, role);
         Users savedUser = userRepository.save(user);
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponse> getUsers() {
-        List<Users> users = userRepository.findAll();
+        List<Users> users = userRepository.findAll(Sort.by(Sort.Order.asc("id")));
         return users.stream().map(UserMapper::toUserResponse).toList();
     }
 

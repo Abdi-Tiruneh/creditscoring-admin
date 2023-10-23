@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -71,21 +70,13 @@ public class Users implements UserDetails {
 
     @PrePersist
     protected void onCreate() {
-//        hashPassword(); // Hash the password
         addedAt = LocalDateTime.now().toString();
         updatedAt = addedAt;
     }
 
     @PreUpdate
     protected void onUpdate() {
-//        if (password != null)
-//            hashPassword(); // Hash the password
         updatedAt = LocalDateTime.now().toString();
-    }
-
-    private void hashPassword() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        password = passwordEncoder.encode(password);
     }
 
     @Override

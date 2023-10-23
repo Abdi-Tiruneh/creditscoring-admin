@@ -21,8 +21,4 @@ public class UserRegistrationReq {
 
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
-
-    @NotBlank(message = "RoleName is required")
-    @Pattern(regexp = "^(?i)(ADMIN|USER)$", message = "Role name must be 'ADMIN' or 'USER'")
-    private String roleName;
 }
