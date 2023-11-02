@@ -44,6 +44,7 @@ public class CustomerUtils {
                 .organizationName(customerAddReq.getOrganizationName())
                 .organizationEmail(customerAddReq.getOrganizationEmail())
                 .organizationPhoneNumber(customerAddReq.getOrganizationPhoneNumber())
+                .organizationLocation(customerAddReq.getOrganizationLocation())
                 .createdBy(currentLoggedInUser.getUser().getFullName())
                 .customerStatus(Status.INITIAL)
                 .build();

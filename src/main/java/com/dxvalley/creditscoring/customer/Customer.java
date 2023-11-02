@@ -34,6 +34,9 @@ public class Customer {
     @Column(nullable = false, unique = true)
     private String organizationPhoneNumber;
 
+    @Column(nullable = true)
+    private String organizationLocation;
+
     @Enumerated(EnumType.STRING)
     private Status customerStatus;
 

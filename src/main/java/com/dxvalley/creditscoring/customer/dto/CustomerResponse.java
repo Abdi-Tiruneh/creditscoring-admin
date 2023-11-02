@@ -12,6 +12,7 @@ public class CustomerResponse {
     private String organizationName;
     private String organizationEmail;
     private String organizationPhoneNumber;
+    private String organizationLocation;
     private Status customerStatus;
     private Integer services;
     private String createdBy;

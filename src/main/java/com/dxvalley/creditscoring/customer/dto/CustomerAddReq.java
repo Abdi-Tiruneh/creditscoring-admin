@@ -11,6 +11,9 @@ public class CustomerAddReq {
     @NotBlank(message = "Organization Name is required")
     private String organizationName;
 
+    @NotBlank(message = "Organization Location is required")
+    private String organizationLocation;
+
     @NotBlank(message = "Organization Email is required")
     @Email(message = "Invalid email format")
     private String organizationEmail;

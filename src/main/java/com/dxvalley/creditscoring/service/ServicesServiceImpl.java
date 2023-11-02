@@ -2,10 +2,12 @@ package com.dxvalley.creditscoring.service;
 
 import com.dxvalley.creditscoring.customer.Customer;
 import com.dxvalley.creditscoring.customer.CustomerService;
-import com.dxvalley.creditscoring.exceptions.customExceptions.ForbiddenException;
 import com.dxvalley.creditscoring.exceptions.customExceptions.ResourceNotFoundException;
 import com.dxvalley.creditscoring.model.Model;
 import com.dxvalley.creditscoring.model.ModelService;
+import com.dxvalley.creditscoring.modelsAdjustment.ModelsAdjustment;
+import com.dxvalley.creditscoring.modelsAdjustment.ModelsAdjustmentService;
+import com.dxvalley.creditscoring.modelsAdjustment.dto.ModelsAdjustmentAddReq;
 import com.dxvalley.creditscoring.service.dto.ServiceAddReq;
 import com.dxvalley.creditscoring.service.dto.ServiceModelReq;
 import com.dxvalley.creditscoring.service.dto.ServiceUpdateReq;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class ServicesServiceImpl implements ServicesService {
     private final ModelService modelService;
     private final CustomerService customerService;
     private final CurrentLoggedInUser currentLoggedInUser;
+    private final ModelsAdjustmentService modelsAdjustmentService;
 
     @Override
     @Transactional
@@ -45,7 +49,33 @@ public class ServicesServiceImpl implements ServicesService {
         service.setModels(selectedModels);
         service.setCustomer(customer);
 
-        return servicesRepository.save(service);
+        Services serviceResponse = servicesRepository.save(service);
+
+        List<ModelsAdjustmentAddReq> modelsAdjustmentAddReqList = new ArrayList<>();
+
+        int index = 0;
+        for(Model model : selectedModels){
+            ModelsAdjustmentAddReq newModelsAdjustmentAddReq = new ModelsAdjustmentAddReq();
+            newModelsAdjustmentAddReq.setModelId(model.getId());
+            newModelsAdjustmentAddReq.setModelName(model.getName());
+            if(index == 0){
+                newModelsAdjustmentAddReq.setModelContribution("100");
+            }else{
+                newModelsAdjustmentAddReq.setModelContribution("0");
+            }
+            newModelsAdjustmentAddReq.setOrganizationId(customer.getOrganizationId());
+            newModelsAdjustmentAddReq.setServiceId(serviceResponse.getId());
+
+            modelsAdjustmentAddReqList.add(newModelsAdjustmentAddReq);
+
+            index++;
+        }
+        
+        List<ModelsAdjustment> ma = modelsAdjustmentService.addModelsAdjustment(modelsAdjustmentAddReqList);
+
+        System.out.println("####################### " + ma);
+
+        return serviceResponse;
 
     }
 

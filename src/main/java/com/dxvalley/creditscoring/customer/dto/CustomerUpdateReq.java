@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class CustomerUpdateReq {
     private String organizationName;
-
+    private String organizationLocation;
     @Email(message = "Invalid email format")
     private String organizationEmail;
 

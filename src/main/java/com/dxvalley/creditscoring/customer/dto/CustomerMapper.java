@@ -9,6 +9,7 @@ public class CustomerMapper {
                 .organizationId(customer.getOrganizationId())
                 .organizationName(customer.getOrganizationName())
                 .organizationEmail(customer.getOrganizationEmail())
+                .organizationLocation(customer.getOrganizationLocation())
                 .organizationPhoneNumber(customer.getOrganizationPhoneNumber())
                 .customerStatus(customer.getCustomerStatus())
                 .services(customer.getServices().size())
